@@ -15,6 +15,7 @@ public class sqlConn {
         return DriverManager.getConnection(url, user, password);
     }
 
+    // VERIFICANDO CONEXÃO
     public static void testeConnction() {
         try(Connection conn = getConnection()){
             System.out.println("Conexão foi bem estabelecida com sucesso!" + conn);

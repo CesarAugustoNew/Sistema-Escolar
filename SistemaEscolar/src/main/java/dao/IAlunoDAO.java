@@ -1,17 +1,16 @@
 package dao;
 
 import model.Aluno;
-
 import java.util.List;
 
 public interface IAlunoDAO {
-    //Crud
-    //C - creat
+    //C CREAT
     void salvarAluno(Aluno aluno);
-    //R - Read
+    //R READ
     List<Aluno> listarTodosAlunos();
-    //U - Update
+    Aluno buscarAlunoPorId(int id);
+    //U UPDATE
     void atualizarAluno(Aluno aluno);
-    //D - Delete
+    // D DELETE
     void excluirAluno(int id);
 }
