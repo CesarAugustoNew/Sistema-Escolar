@@ -6,17 +6,12 @@ import java.util.List;
 
 public interface IAlunoDAO {
     //Crud
-
-    //C - create
-    void salvar(Aluno aluno);
-
-    //R - read
+    //C - creat
+    void salvarAluno(Aluno aluno);
+    //R - Read
     List<Aluno> listarTodosAlunos();
-
-    //U - update
+    //U - Update
     void atualizarAluno(Aluno aluno);
-
-    //D - delete
+    //D - Delete
     void excluirAluno(int id);
-
 }

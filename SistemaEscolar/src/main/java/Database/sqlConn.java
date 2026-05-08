@@ -1,5 +1,6 @@
 package Database;
 
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -14,15 +15,16 @@ public class sqlConn {
         return DriverManager.getConnection(url, user, password);
     }
 
-    public static void testConnection() {
-        try (Connection conn = getConnection()) {
-            System.out.println("Conexão foi bem estabelecida " + conn);
-        } catch (SQLException e) {
-            System.out.println("Falha na conexão " + e.getMessage());
-            System.out.println("Verifique: ");
-            System.out.println("1. MySql está rodando ?");
-            System.out.println("2. O banco " + url + "realmente existe ?");
-            System.out.println("3. O Usuario ou senha estão corretos ?");
+    public static void testeConnction() {
+        try(Connection conn = getConnection()){
+            System.out.println("Conexão foi bem estabelecida com sucesso!" + conn);
+        } catch (SQLException e){
+            System.out.println("falha na conexão" + e.getMessage());
+            System.out.println("verifique: ");
+            System.out.println("1. MySql está rodando? ");
+            System.out.println("2. O banco " + url + "realmente existe? ");
+            System.out.println("3. O usuário ou senha estão corretos?");
         }
+
     }
 }

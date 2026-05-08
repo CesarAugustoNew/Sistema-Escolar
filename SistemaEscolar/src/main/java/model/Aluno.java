@@ -2,41 +2,40 @@ package model;
 
 import java.time.LocalDate;
 
+
 public class Aluno {
-    private int id;
+    private String id;
     private String nome;
     private String cpf;
     private String email;
-    private LocalDate data_nascimento;
+    private LocalDate dataNascimento;
     private String telefone;
 
-
-    //Construtor para criar novo aluno
-    public Aluno(String cpf, String telefone, LocalDate data_nascimento, String email, String nome) {
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.data_nascimento = data_nascimento;
-        this.email = email;
+    //Construtor para CRIAR um novo aluno
+    public Aluno(String nome, String cpf, String email, LocalDate dataNascimento, String telefone) {
         this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
     }
+    //Construtor para LEITURA do banco (id ja existe)
 
-    //Construtor para leitura do banco (id ja existe)
 
-
-    public Aluno(int id, String nome, String cpf, String email, LocalDate data_nascimento, String telefone) {
+    public Aluno(String id, String nome, String cpf, String email, LocalDate dataNascimento, String telefone) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
-        this.data_nascimento = data_nascimento;
+        this.dataNascimento = dataNascimento;
         this.telefone = telefone;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -64,12 +63,12 @@ public class Aluno {
         this.email = email;
     }
 
-    public LocalDate getData_nascimento() {
-        return data_nascimento;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(LocalDate data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getTelefone() {
@@ -81,10 +80,11 @@ public class Aluno {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return String.format(
-                "Aluno: id=%d - nome%s - cpf%s - nascimento=%s - telefone=%s",
-                id, nome, cpf, email, data_nascimento, telefone
+                "Aluno: id=id - nome=%s - cpf=%s - email=%s - nascimento=%s - telefone=%s",
+                id, nome, cpf, email, dataNascimento, telefone
         );
     }
 }
