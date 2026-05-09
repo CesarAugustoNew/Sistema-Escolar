@@ -79,6 +79,7 @@ O objetivo principal foi praticar:
 
 ---
 
-## 👨‍💻 Autor: Cesar
+## 🗄 Modelagem Banco de Dados
+<br>
+<img width="1536" height="1024" alt="modelagem" src="https://github.com/user-attachments/assets/0d3ff96a-7b8a-454a-80cf-af9d6c01382c" />
 
-Projeto desenvolvido como atividade prática de Java + Banco de Dados.
