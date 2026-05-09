@@ -1,85 +1,150 @@
-# 📚 Sistema Escolar - CRUD de Alunos e Professores (Java + MySQL)
+# 📚 Sistema Escolar - CRUD de Alunos, Professores e Instituições (Java + MySQL)
 
 Nesta atividade, desenvolvemos uma aplicação Java conectada a um banco de dados MySQL utilizando JDBC, aplicando o padrão de projeto DAO (Data Access Object).  
 
-Esse padrão é utilizado para separar a lógica de acesso a dados da lógica de negócios da aplicação, tornando o código mais organizado, reutilizável e de fácil manutenção.
+O sistema realiza operações CRUD completas para:
+
+- 👨‍🎓 Alunos  
+- 👨‍🏫 Professores  
+- 🏫 Instituições  
+
+O padrão DAO foi utilizado para separar a lógica de acesso aos dados da lógica principal da aplicação, deixando o código mais organizado, reutilizável e de fácil manutenção.
+
+---
+## 🗄️ Modelagem Banco de Dados
+
+<br> <img width="1536" height="1024" alt="modelagem" src="https://github.com/user-attachments/assets/0d3ff96a-7b8a-454a-80cf-af9d6c01382c" />
+
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+# 📁 Estrutura do projeto
 
-- Java SE  
+```bash
+src/main/java
+│
+├── dao
+│   ├── IAlunoDAO
+│   ├── IProfessorDAO
+│   └── IInstituicaoDAO
+│
+├── daoImplements
+│   ├── AlunoDAOImplements
+│   ├── ProfessorDAOImplements
+│   └── InstituicaoDAOImplements
+│
+├── Database
+│   └── sqlConn
+│
+├── model
+│   ├── Aluno
+│   ├── Professor
+│   └── Instituicao
+│
+└── org.example
+    └── App
+```
+---
+
+# 🛠️ Tecnologias utilizadas
+
+- Java
 - JDBC  
 - MySQL  
-- MySQL Connector (Driver JDBC)  
+- Maven  
+- MySQL Connector/J  
 
 ---
 
-## 📌 O que foi feito
+# 📌 Funcionalidades do sistema
 
-### 🔌 Configuração da conexão com o MySQL
-- Criamos a classe `MysqlConnection`, responsável por abrir a conexão com o banco de dados utilizando `DriverManager`.
-- Adicionamos o driver JDBC do MySQL ao projeto.
-- Configuramos corretamente a conexão com usuário, senha e URL do banco.
+## 👨‍🎓 CRUD de Alunos
 
----
+O sistema permite:
 
-### 👨‍🎓 Criação da entidade Aluno
-- Definimos a classe `Aluno`, que representa os registros da tabela `alunos` no banco de dados.
-- A classe contém os atributos principais do aluno, como:
-  - id  
-  - nome  
-  - email  
-  - outros dados acadêmicos  
+- Cadastrar alunos
+- Atualizar alunos
+- Excluir alunos
+- Listar todos os alunos
+- Buscar aluno por ID
 
----
-
-### 📁 Interface DAO (dao)
-- Criamos a interface `IAlunoDAO`, contendo os métodos principais:
-  - listar alunos  
-  - buscar aluno por ID  
-  - cadastrar aluno  
-  - atualizar aluno  
-  - excluir aluno  
+### Dados do aluno:
+- ID
+- Nome
+- CPF
+- Email
+- Data de nascimento
+- Telefone
 
 ---
 
-### ⚙️ Implementação DAO (daoImpl)
-- Implementamos a interface `IAlunoDAO` na classe `AlunoDAOImpl`.
-- Utilizamos `PreparedStatement` e `ResultSet` para manipulação segura dos dados.
-- Aplicamos boas práticas como `try-with-resources` para gerenciamento de conexões.
+## 👨‍🏫 CRUD de Professores
+
+O sistema também possui gerenciamento completo de professores.
+
+### Funcionalidades:
+- Cadastrar professores
+- Atualizar professores
+- Excluir professores
+- Listar professores
+- Buscar professor por ID
+
+### Dados do professor:
+- ID
+- Instituição vinculada
+- Nome
+- CPF
+- Email
+- Titulação
+
+### Titulações disponíveis:
+- GRADUACAO
+- ESPECIALIZACAO
+- MESTRADO
+- DOUTORADO
 
 ---
 
-### ➕ Inserção e leitura de dados
-- Criamos o método para cadastrar novos alunos no banco de dados.
-- Implementamos a listagem de todos os alunos cadastrados.
-- Adicionamos validação para exibir mensagem quando não houver alunos registrados.
+## 🏫 CRUD de Instituições
+
+Foi implementado o gerenciamento das instituições de ensino.
+
+### Funcionalidades:
+- Cadastrar instituições
+- Atualizar instituições
+- Excluir instituições
+- Listar instituições
+- Buscar instituição por ID
+
+### Dados da instituição:
+- ID
+- Nome
+- CNPJ
+- Cidade
+- Estado
+- Email
+- Telefone
 
 ---
 
-## 🎯 Objetivo do projeto
+# 🔌 Conexão com o banco de dados
 
-O objetivo principal foi praticar:
+Foi criada uma classe responsável pela conexão com o MySQL utilizando JDBC.
 
-- Conexão Java com MySQL
-- Uso de JDBC
-- Aplicação do padrão DAO
-- Organização de código em camadas
-- Operações CRUD (Create, Read, Update, Delete)
-
+### Recursos utilizados:
+- `DriverManager`
+- `Connection`
 ---
 
-## 🚀 Melhorias futuras
+## ⚙️ Conceitos aplicados
 
-- Implementar interface gráfica (JavaFX ou Swing)  
-- Adicionar validações de dados  
-- Criar relacionamento com outras entidades (ex: Turma)  
-- Implementar API REST com Spring Boot  
+Durante o desenvolvimento do projeto foram praticados diversos conceitos importantes utilizados no desenvolvimento backend com Java:
 
----
-
-## 🗄 Modelagem Banco de Dados
-<br>
-<img width="1536" height="1024" alt="modelagem" src="https://github.com/user-attachments/assets/0d3ff96a-7b8a-454a-80cf-af9d6c01382c" />
-
+- Programação Orientada a Objetos (POO)
+- JDBC 
+- CRUD (Create, Read, Update, Delete)
+- DAO
+- Manipulação de banco de dados com Java
+- Tratamento de exceções
+- Conexão com MySQL
+- Boas práticas de código
