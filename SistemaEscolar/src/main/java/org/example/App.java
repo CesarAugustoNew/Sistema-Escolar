@@ -1,10 +1,14 @@
 package org.example;
 
+import Database.sqlConn;
+
 import daoImplements.AlunoDAOImplements;
 import daoImplements.ProfessorDAOImplements;
-import Database.sqlConn;
+import daoImplements.InstituicaoDAOImplements;
+
 import model.Aluno;
 import model.Professor;
+import model.Instituicao;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -17,8 +21,14 @@ public class App {
 
         sqlConn.testeConnction();
 
-        AlunoDAOImplements alunoDaoMethods = new AlunoDAOImplements();
-        ProfessorDAOImplements professorDaoMethods = new ProfessorDAOImplements();
+        AlunoDAOImplements alunoDaoMethods =
+                new AlunoDAOImplements();
+
+        ProfessorDAOImplements professorDaoMethods =
+                new ProfessorDAOImplements();
+
+        InstituicaoDAOImplements instituicaoDaoMethods =
+                new InstituicaoDAOImplements();
 
         Scanner sc = new Scanner(System.in);
 
@@ -26,35 +36,57 @@ public class App {
 
         do {
 
-            System.out.println("\n======= MENU =======");
+            System.out.println("\n=========== MENU SISTEMA ESCOLAR ===========");
+
+            // =====================================================
+            // ALUNO
+            // =====================================================
+
+            System.out.println("\n========== ALUNO ==========");
             System.out.println("1. Cadastrar Aluno");
             System.out.println("2. Atualizar Aluno");
             System.out.println("3. Excluir Aluno");
             System.out.println("4. Listar Alunos");
             System.out.println("5. Buscar Aluno por ID");
 
+            // =====================================================
+            // PROFESSOR
+            // =====================================================
+
+            System.out.println("\n======== PROFESSOR ========");
             System.out.println("6. Cadastrar Professor");
             System.out.println("7. Atualizar Professor");
             System.out.println("8. Excluir Professor");
             System.out.println("9. Listar Professores");
             System.out.println("10. Buscar Professor por ID");
 
-            System.out.println("0. Sair do programa");
+            // =====================================================
+            // INSTITUIÇÃO
+            // =====================================================
 
-            System.out.print("Escolha uma opção: ");
+            System.out.println("\n======= INSTITUIÇÃO =======");
+            System.out.println("11. Cadastrar Instituição");
+            System.out.println("12. Atualizar Instituição");
+            System.out.println("13. Excluir Instituição");
+            System.out.println("14. Listar Instituições");
+            System.out.println("15. Buscar Instituição por ID");
+
+            System.out.println("\n0. Sair");
+
+            System.out.print("\nEscolha uma opção: ");
 
             opcao = sc.nextInt();
             sc.nextLine();
 
             switch (opcao) {
 
-                // =========================================================
+                // =====================================================
                 // ALUNO
-                // =========================================================
+                // =====================================================
 
                 case 1:
 
-                    System.out.println("Cadastro de aluno:");
+                    System.out.println("\n=== Cadastro de Aluno ===");
 
                     System.out.print("Nome: ");
                     String nome = sc.nextLine();
@@ -104,6 +136,7 @@ public class App {
                             alunoDaoMethods.buscarAlunoPorId(idAtualizar);
 
                     if (alunoExistente == null) {
+
                         System.out.println("Aluno não encontrado.");
                         break;
                     }
@@ -137,7 +170,7 @@ public class App {
                         try {
                             alunoExistente.setDataNascimento(LocalDate.parse(novaData));
                         } catch (DateTimeParseException e) {
-                            System.out.println("Data inválida. Mantendo valor anterior.");
+                            System.out.println("Data inválida.");
                         }
                     }
 
@@ -169,7 +202,9 @@ public class App {
                             alunoDaoMethods.listarTodosAlunos();
 
                     if (todosAlunos.isEmpty()) {
+
                         System.out.println("Nenhum aluno encontrado.");
+
                     } else {
 
                         for (Aluno aluno : todosAlunos) {
@@ -190,20 +225,23 @@ public class App {
                             alunoDaoMethods.buscarAlunoPorId(idBuscar);
 
                     if (alunoBuscado != null) {
+
                         System.out.println(alunoBuscado);
+
                     } else {
+
                         System.out.println("Aluno não encontrado.");
                     }
 
                     break;
 
-                // =========================================================
+                // =====================================================
                 // PROFESSOR
-                // =========================================================
+                // =====================================================
 
                 case 6:
 
-                    System.out.println("Cadastro de professor:");
+                    System.out.println("\n=== Cadastro de Professor ===");
 
                     System.out.print("ID da instituição: ");
                     int instituicaoId = sc.nextInt();
@@ -244,6 +282,7 @@ public class App {
                             professorDaoMethods.buscarProfessorPorId(idProfessorAtualizar);
 
                     if (professorExistente == null) {
+
                         System.out.println("Professor não encontrado.");
                         break;
                     }
@@ -297,7 +336,9 @@ public class App {
                             professorDaoMethods.listarTodosProfessores();
 
                     if (professores.isEmpty()) {
+
                         System.out.println("Nenhum professor encontrado.");
+
                     } else {
 
                         for (Professor professor : professores) {
@@ -318,21 +359,174 @@ public class App {
                             professorDaoMethods.buscarProfessorPorId(idProfessorBuscar);
 
                     if (professorBuscado != null) {
+
                         System.out.println(professorBuscado);
+
                     } else {
+
                         System.out.println("Professor não encontrado.");
                     }
 
                     break;
 
-                // =========================================================
+                // =====================================================
+                // INSTITUIÇÃO
+                // =====================================================
+
+                case 11:
+
+                    System.out.println("\n=== Cadastro de Instituição ===");
+
+                    System.out.print("Nome: ");
+                    String nomeInstituicao = sc.nextLine();
+
+                    System.out.print("CNPJ: ");
+                    String cnpj = sc.nextLine();
+
+                    System.out.print("Cidade: ");
+                    String cidade = sc.nextLine();
+
+                    System.out.print("Estado: ");
+                    String estado = sc.nextLine();
+
+                    System.out.print("Email: ");
+                    String emailInstituicao = sc.nextLine();
+
+                    System.out.print("Telefone: ");
+                    String telefoneInstituicao = sc.nextLine();
+
+                    Instituicao novaInstituicao = new Instituicao(
+                            nomeInstituicao,
+                            cnpj,
+                            cidade,
+                            estado,
+                            emailInstituicao,
+                            telefoneInstituicao
+                    );
+
+                    instituicaoDaoMethods.salvarInstituicao(novaInstituicao);
+
+                    break;
+
+                case 12:
+
+                    System.out.print("Digite o ID da instituição para atualizar: ");
+
+                    int idInstituicaoAtualizar = sc.nextInt();
+                    sc.nextLine();
+
+                    Instituicao instituicaoExistente =
+                            instituicaoDaoMethods.buscarInstituicaoPorId(idInstituicaoAtualizar);
+
+                    if (instituicaoExistente == null) {
+
+                        System.out.println("Instituição não encontrada.");
+                        break;
+                    }
+
+                    System.out.print("Novo nome (" + instituicaoExistente.getNome() + "): ");
+                    String novoNomeInstituicao = sc.nextLine();
+
+                    if (!novoNomeInstituicao.isEmpty()) {
+                        instituicaoExistente.setNome(novoNomeInstituicao);
+                    }
+
+                    System.out.print("Novo CNPJ (" + instituicaoExistente.getCnpj() + "): ");
+                    String novoCnpj = sc.nextLine();
+
+                    if (!novoCnpj.isEmpty()) {
+                        instituicaoExistente.setCnpj(novoCnpj);
+                    }
+
+                    System.out.print("Nova cidade (" + instituicaoExistente.getCidade() + "): ");
+                    String novaCidade = sc.nextLine();
+
+                    if (!novaCidade.isEmpty()) {
+                        instituicaoExistente.setCidade(novaCidade);
+                    }
+
+                    System.out.print("Novo estado (" + instituicaoExistente.getEstado() + "): ");
+                    String novoEstado = sc.nextLine();
+
+                    if (!novoEstado.isEmpty()) {
+                        instituicaoExistente.setEstado(novoEstado);
+                    }
+
+                    System.out.print("Novo email (" + instituicaoExistente.getEmail() + "): ");
+                    String novoEmailInstituicao = sc.nextLine();
+
+                    if (!novoEmailInstituicao.isEmpty()) {
+                        instituicaoExistente.setEmail(novoEmailInstituicao);
+                    }
+
+                    System.out.print("Novo telefone (" + instituicaoExistente.getTelefone() + "): ");
+                    String novoTelefoneInstituicao = sc.nextLine();
+
+                    if (!novoTelefoneInstituicao.isEmpty()) {
+                        instituicaoExistente.setTelefone(novoTelefoneInstituicao);
+                    }
+
+                    instituicaoDaoMethods.atualizarInstituicao(instituicaoExistente);
+
+                    break;
+
+                case 13:
+
+                    System.out.print("Digite o ID da instituição para excluir: ");
+
+                    int idInstituicaoExcluir = sc.nextInt();
+                    sc.nextLine();
+
+                    instituicaoDaoMethods.excluirInstituicao(idInstituicaoExcluir);
+
+                    break;
+
+                case 14:
+
+                    List<Instituicao> instituicoes =
+                            instituicaoDaoMethods.listarTodasInstituicoes();
+
+                    if (instituicoes.isEmpty()) {
+
+                        System.out.println("Nenhuma instituição encontrada.");
+
+                    } else {
+
+                        for (Instituicao instituicao : instituicoes) {
+                            System.out.println(instituicao);
+                        }
+                    }
+
+                    break;
+
+                case 15:
+
+                    System.out.print("Digite o ID da instituição para buscar: ");
+
+                    int idInstituicaoBuscar = sc.nextInt();
+                    sc.nextLine();
+
+                    Instituicao instituicaoBuscada =
+                            instituicaoDaoMethods.buscarInstituicaoPorId(idInstituicaoBuscar);
+
+                    if (instituicaoBuscada != null) {
+
+                        System.out.println(instituicaoBuscada);
+
+                    } else {
+
+                        System.out.println("Instituição não encontrada.");
+                    }
+
+                    break;
+
+                // =====================================================
                 // SAIR
-                // =========================================================
+                // =====================================================
 
                 case 0:
 
                     System.out.println("Saindo do programa...");
-
                     break;
 
                 default:
