@@ -74,7 +74,7 @@ O objetivo principal foi praticar:
 
 - Implementar interface gráfica (JavaFX ou Swing)  
 - Adicionar validações de dados  
-- Criar relacionamento com outras entidades (ex: Professor, Turma)  
+- Criar relacionamento com outras entidades (ex: Turma)  
 - Implementar API REST com Spring Boot  
 
 ---
