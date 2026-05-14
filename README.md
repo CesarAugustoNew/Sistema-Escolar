@@ -1,4 +1,4 @@
-# 📚 Sistema Escolar - CRUD de Alunos, Professores e Instituições (Java + MySQL)
+# 📚 Sistema Escolar - CRUD de Alunos, Professores, Instituições e Turma (Java + MySQL)
 
 Nesta atividade, desenvolvemos uma aplicação Java conectada a um banco de dados MySQL utilizando JDBC, aplicando o padrão de projeto DAO (Data Access Object).  
 
