@@ -6,7 +6,8 @@ O sistema realiza operações CRUD completas para:
 
 - 👨‍🎓 Alunos  
 - 👨‍🏫 Professores  
-- 🏫 Instituições  
+- 🏫 Instituições
+- 🪂 Turma
 
 O padrão DAO foi utilizado para separar a lógica de acesso aos dados da lógica principal da aplicação, deixando o código mais organizado, reutilizável e de fácil manutenção.
 
@@ -26,12 +27,14 @@ src/main/java
 ├── dao
 │   ├── IAlunoDAO
 │   ├── IProfessorDAO
-│   └── IInstituicaoDAO
+│   ├── IInstituicaoDAO
+│   └── ITurmaDAO
 │
 ├── daoImplements
 │   ├── AlunoDAOImplements
 │   ├── ProfessorDAOImplements
-│   └── InstituicaoDAOImplements
+│   ├── InstituicaoDAOImplements
+│   └── TurmaDAOImplements
 │
 ├── Database
 │   └── sqlConn
@@ -39,7 +42,8 @@ src/main/java
 ├── model
 │   ├── Aluno
 │   ├── Professor
-│   └── Instituicao
+│   ├── Instituicao
+│   ├── Turma
 │
 └── org.example
     └── App
